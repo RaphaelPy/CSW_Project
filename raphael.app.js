@@ -105,6 +105,25 @@ function diffName(key) {
   return "All Star";
 }
 
+function ihkGradeFromPercent(p) {
+  // IHK Noten (typisch): 92-100=1, 81-91=2, 67-80=3, 50-66=4, 30-49=5, 0-29=6
+  if (p >= 92) return 1;
+  if (p >= 81) return 2;
+  if (p >= 67) return 3;
+  if (p >= 50) return 4;
+  if (p >= 30) return 5;
+  return 6;
+}
+
+function ihkText(grade) {
+  if (grade === 1) return "sehr gut";
+  if (grade === 2) return "gut";
+  if (grade === 3) return "befriedigend";
+  if (grade === 4) return "ausreichend";
+  if (grade === 5) return "mangelhaft";
+  return "ungenügend";
+}
+
 function vocabByDiff(key) {
   
 
@@ -213,7 +232,8 @@ function finish() {
   updateDash();
 
   ui.qTitle.textContent = "Ergebnis";
-  ui.qSub.textContent = `Richtig: ${run.ok}/${total} (${percent}%)`;
+  const grade = ihkGradeFromPercent(percent);
+ui.qSub.textContent = `Richtig: ${run.ok}/${total} (${percent}%) — IHK-Note: ${grade} (${ihkText(grade)})`;
   ui.answers.innerHTML = `<button class="btn primary" id="again">Nochmal</button>`;
   ui.cardActions.style.display = "none";
   updateStatus();
