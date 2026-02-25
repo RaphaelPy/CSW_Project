@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyHub – Dashboard</title>
+    <link rel="stylesheet" href="ege.dashboard.css" />
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <h2>StudyHub</h2>
+      <a href="ege.landing.html" class="nav-link">Landing Page</a>
+      <a href="masha.lueckentext_Trainer.html" class="nav-link">Vokabeln</a>
+      <a href="nik.index.html" class="nav-link">Karteikarten</a>
+      <a href="raphael.index.html" class="nav-link">Quiz</a>
+      <a href="ege.dashboard.html" class="nav-link active">Dashboard</a>
+
+      <div class="sidebar-note">
+        <div class="sidebar-note-title">Hinweis</div>
+        <div class="sidebar-note-text">
+          Damit Daten erscheinen: jeweilige App öffnen und mindestens 1 Session
+          abschließen.
+        </div>
+      </div>
+    </aside>
+
+    <main class="container">
+      <!-- Header / Quick Overview -->
+      <section class="welcome-section">
+        <div class="welcome-content">
+          <div class="welcome-left">
+            <h2>Willkommen zurück!</h2>
+            <p class="welcome-text" id="welcomeText">
+              Spiele die Module (Quiz/Vokabeln) einmal durch – dann werden die
+              LocalStorage-Daten hier angezeigt.
+            </p>
+          </div>
+
+          <div class="quick-stats">
+            <div class="stat-box">
+              <div class="stat-value" id="qsSessions">0</div>
+              <div class="stat-label">Sessions gesamt</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value" id="qsBest">0%</div>
+              <div class="stat-label">Bester Wert</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value" id="qsLast">0%</div>
+              <div class="stat-label">Letzter Wert</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dashboard-grid">
+        <!-- Links -->
+        <div class="left-column">
+          <section class="card">
+            <div class="card-header">
+              <h3>Aktivität (Kurzüberblick)</h3>
+              <span class="badge">Auto</span>
+            </div>
+
+            <ul class="activity-list" id="activityList">
+              <li class="activity-item">—</li>
+            </ul>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h3>Module</h3>
+            </div>
+
+            <div class="modules-grid">
+              <a class="module-link" href="masha.lueckentext_Trainer.html">
+                <div class="module-item">
+                  <div class="module-title">Vokabeln</div>
+                  <div class="module-sub" id="moduleVocabSub"></div>
+                </div>
+              </a>
+
+              <a class="module-link" href="raphael.index.html">
+                <div class="module-item">
+                  <div class="module-title">Quiz</div>
+                  <div class="module-sub" id="moduleQuizSub"></div>
+                </div>
+              </a>
+
+              <a class="module-link" href="nik.index.html">
+                <div class="module-item">
+                  <div class="module-title">Karteikarten</div>
+                  <div class="module-sub"></div>
+                </div>
+              </a>
+            </div>
+
+            <div class="module-chart" style="margin-top:12px;">
+              <h4 style="margin:6px 0 8px 0;font-size:0.95rem">Karteikarten (Nik) — Richtig / Falsch</h4>
+              <div style="height:140px;">
+                <canvas id="nikChart"></canvas>
+              </div>
+            </div>
+
+            <div class="hint-box">
+              Tipp: Wenn nichts erscheint, zuerst das Modul starten und eine
+              Session beenden.
+            </div>
+          </section>
+        </div>
+
+        
+        <div class="middle-column">
+        
+          <section class="card" id="studyResultsCard">
+            <div class="card-header">
+              <h3>Raphael – Quiz</h3>
+              <span class="pill" id="raphaelStatus">Warte auf Daten</span>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric">
+                <div class="metric-label">Versuche</div>
+                <div class="metric-value" id="studyAttempts">0</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Bestwert</div>
+                <div class="metric-value" id="studyBest">0%</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Letzter Score</div>
+                <div class="metric-value" id="studyLast">0%</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Schwierigkeit</div>
+                <div class="metric-value" id="studyDiff">-</div>
+              </div>
+            </div>
+
+              <div class="chart-container" style="height:220px;margin-top:12px;">
+                <canvas id="raphaelChart"></canvas>
+              </div>
+
+            <details class="raw-details">
+              <summary>
+                Rohdaten anzeigen (Key: <code>studyhub_data</code>)
+              </summary>
+              <pre id="raphaelRaw" class="raw-box"></pre>
+            </details>
+          </section>
+
+          
+          <section class="card" id="vocabResultsCard">
+            <div class="card-header">
+              <h3>Masha – Vokabeln</h3>
+              <span class="pill" id="vocabStatus">Warte auf Daten</span>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric">
+                <div class="metric-label">Sessions</div>
+                <div class="metric-value" id="vocabSessions">0</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Bestwert</div>
+                <div class="metric-value" id="vocabBest">0%</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Letzter Wert</div>
+                <div class="metric-value" id="vocabLast">0%</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Level</div>
+                <div class="metric-value" id="vocabLevel">Anfänger</div>
+              </div>
+
+              <div class="metric">
+                <div class="metric-label">Mastery</div>
+                <div class="metric-value" id="vocabMastery">0</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Accuracy (gesamt)</div>
+                <div class="metric-value" id="vocabAcc">0%</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Richtig / Falsch</div>
+                <div class="metric-value" id="vocabCW">0 / 0</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Letzte Aktivität</div>
+                <div class="metric-value" id="vocabLastActive">-</div>
+              </div>
+            </div>
+
+            <div class="chart-container" style="height:200px;margin-top:12px;">
+              <canvas id="vocabChart"></canvas>
+            </div>
+
+            <details class="raw-details">
+              <summary>
+                Rohdaten anzeigen (Keys: <code>studyhub_stats</code>,
+                <code>studyhub_progress</code>)
+              </summary>
+              <pre id="vocabRaw" class="raw-box"></pre>
+            </details>
+          </section>
+        </div>
+
+        <!-- Rechts -->
+        <div class="right-column">
+          <section class="card">
+            <div class="card-header">
+              <h3>Heute</h3>
+              <span class="time-display" id="currentTime">--:--</span>
+            </div>
+
+            <div class="today-stats">
+              <div class="today-box">
+                <div class="box-label">Status</div>
+                <div class="box-value" id="todayStatus">
+                  Starte ein Modul und beende eine Session, damit Daten
+                  gespeichert werden.
+                </div>
+              </div>
+
+              <div class="today-box">
+                <div class="box-label">Verbindung</div>
+                <div class="box-value">
+                  Beide Seiten müssen unter derselben Origin laufen (z.B.
+                  <code>http://127.0.0.1:5500</code>).
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h3>Debug</h3>
+              <span class="badge">Info</span>
+            </div>
+
+            <div class="debug-list">
+              <div class="debug-row">
+                <span class="debug-k">Origin</span>
+                <span class="debug-v" id="dbgOrigin">—</span>
+              </div>
+              <div class="debug-row">
+                <span class="debug-k">Letzte Aktualisierung</span>
+                <span class="debug-v" id="dbgUpdated">—</span>
+              </div>
+              <div class="debug-row">
+                <span class="debug-k">Storage Events</span>
+                <span class="debug-v" id="dbgStorageEvents">0</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <footer class="footer">StudyHub © 2026</footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="ege.dashboard.js"></script>
+    </main>
+  </body>
+</html>
