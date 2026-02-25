@@ -1,0 +1,500 @@
+/* ================================
+   OLD -> NEW DESIGN ADAPTER CSS
+   (alte Klassen, neuer Look)
+   ================================ */
+
+/* RESET / GLOBAL */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background: #f6f7fb;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+/* Optional helper */
+.muted {
+  color: #64748b;
+}
+
+/* Headline helper aus alt */
+.h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* ================================
+   APP LAYOUT (alt: .app) -> neu
+   ================================ */
+.app {
+  display: flex;            /* statt grid */
+  min-height: 100vh;
+}
+
+/* ================================
+   SIDEBAR (alt: .sidebar) -> neu ASIDE
+   ================================ */
+.sidebar {
+  width: 280px;
+  background: #f5f6ff;
+  padding: 1.5rem;
+  border-right: none;
+  box-shadow: none;
+
+  position: relative;       /* alt war sticky */
+  height: auto;
+  overflow: visible;
+}
+
+/* Brand (alt: .brand) -> neu aside-card */
+.brand {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  background: linear-gradient(135deg, #332b6a, #584ab4);
+  color: #fff;
+  padding: 1.2rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+
+  text-decoration: none;
+}
+
+.brand:visited {
+  color: #fff;
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.brand-title {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.brand-sub {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Menü (alt: .menu/.menu-item) -> neu .nav-item look */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.menu-item {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+
+  text-decoration: none;
+  color: #334155;
+
+  background: transparent;
+  border: none;
+}
+
+.menu-item:visited {
+  color: #334155;
+}
+
+.menu-item:hover {
+  background: rgba(51, 43, 106, 0.08);
+}
+
+.menu-item.active {
+  background: rgba(51, 43, 106, 0.12);
+  color: #332b6a;
+  font-weight: 800;
+}
+
+/* Badge bleibt, aber in neuem Theme */
+.badge {
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: #332b6a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Divider/Row etwas cleaner */
+.menu-divider {
+  height: 1px;
+  margin: 0.9rem 0;
+  background: rgba(30, 41, 59, 0.12);
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0.2rem;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.chip {
+  border: 1px solid rgba(51, 43, 106, 0.2);
+  background: #ffffff;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* Sidebar Block (alt) -> neu aside-stats card style */
+.sidebar-block {
+  margin-top: 1.2rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.sb-row {
+  background: #fff;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+
+  font-weight: 600;
+  border-bottom: none;
+}
+
+.sb-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.sb-value {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+/* ================================
+   MAIN AREA (alt: .main) -> neu
+   ================================ */
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOPBAR (alt: .topbar) -> neu header-card */
+.topbar {
+  margin: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+  position: relative;
+  top: auto;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  border-bottom: none;
+}
+
+/* Tabs behalten aber modern */
+.tabs {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  border: 1px solid rgba(51, 43, 106, 0.2);
+  background: #fff;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  color: #334155;
+}
+
+.tab.active {
+  background: #eef0ff;
+  border-color: rgba(51, 43, 106, 0.35);
+  color: #332b6a;
+}
+
+.top-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* CONTENT WRAPPER (alt: .content) -> neu spacing */
+.content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Panels / Cards -> neu */
+.panel,
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+.card {
+  padding: 1.2rem;
+}
+
+.panel-title {
+  margin-bottom: 0.9rem;
+  font-size: 14px;
+  font-weight: 900;
+  color: #1e293b;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+
+  border-bottom: 1px solid rgba(30, 41, 59, 0.12);
+}
+
+/* Status Pills -> neutral */
+.status {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.pill {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(51, 43, 106, 0.2);
+  background: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  color: #334155;
+}
+
+/* ================================
+   BUTTONS (alt: .btn.primary) -> neu .btn-primary
+   ================================ */
+.btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+
+  background: #eef0ff;
+  color: #332b6a;
+}
+
+.btn:hover {
+  background: #dde1ff;
+}
+
+.btn.primary {
+  background: #332b6a;
+  color: #fff;
+}
+
+/* Wenn du irgendwo secondary brauchst (alt hatte das nicht explizit) */
+.btn.secondary {
+  background: #eef0ff;
+  color: #332b6a;
+}
+
+/* ================================
+   INPUTS (alt: .text-input) -> neu
+   ================================ */
+.text-input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 12px;
+  border: 2px solid #c7c9ff;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: rgba(51, 43, 106, 0.65);
+}
+
+/* Error text moderner */
+.error-text {
+  margin-top: 0.5rem;
+  min-height: 16px;
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ================================
+   PROGRESS (alt: .progress/.progress-bar) -> neu track
+   ================================ */
+.progress {
+  width: 100%;
+  height: 6px;
+  margin: 0.5rem 0 1.1rem 0;
+  background: #cfd8e3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #332b6a;
+  transition: width 0.4s;
+}
+
+/* ================================
+   LISTS / TIPS
+   ================================ */
+.tips {
+  padding-left: 1.2rem;
+  line-height: 2;
+  color: #334155;
+  font-weight: 600;
+}
+
+.tips li {
+  margin: 0;
+}
+
+/* ================================
+   GRID (alt: .grid-2) -> neu spacing
+   ================================ */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* ================================
+   MODAL (optional): cleaner card
+   ================================ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.modal {
+  width: min(620px, 100%);
+  padding: 1.2rem;
+  background: #fff;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 12px;
+  font-weight: 900;
+  color: #64748b;
+}
+
+.select,
+.checkline {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 12px;
+  border: 2px solid #c7c9ff;
+  background: #fff;
+  font-weight: 800;
+}
+
+.checkline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(30, 41, 59, 0.12);
+}
+
+/* ================================
+   RESPONSIVE (alt angepasst)
+   ================================ */
+@media (max-width: 1100px) {
+  .sidebar {
+    width: 260px;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .topbar {
+    margin: 1rem;
+    padding: 1.2rem 1.2rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}

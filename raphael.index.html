@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Study Hub – Quiz</title>
+    <link rel="stylesheet" href="raphael.styles.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <a href="ege.dashboard.html" class="brand">
+          <img src="brand.png" alt="" class="brand-logo" />
+
+          <div class="brand-text">
+            <div class="brand-title">Study Hub</div>
+            <div class="brand-sub">Vokabel & Lückentext</div>
+          </div>
+        </a>
+
+        <nav class="menu">
+          <a class="menu-item" href="javascript:void(0)">
+            <span>Versuche</span>
+            <span class="badge" id="sbAttempts">0</span>
+          </a>
+
+          <a class="menu-item active" href="javascript:void(0)">
+            <span>Bestwert</span>
+            <span class="badge" id="sbBest">0%</span>
+          </a>
+
+          <a class="menu-item" href="javascript:void(0)">
+            <span>Letzter Score</span>
+            <span class="badge" id="sbLast">0%</span>
+          </a>
+
+          <div class="menu-divider"></div>
+
+          <div class="menu-row">
+            <span>Daten</span>
+            <button class="chip" id="btnExport">Export</button>
+          </div>
+        </nav>
+
+        <div class="sidebar-block">
+          <div class="sb-row">
+            <div class="sb-title">Speicherung</div>
+            <div class="sb-value">localStorage</div>
+          </div>
+
+          <div class="sb-row">
+            <div class="sb-title">Level</div>
+            <div class="sb-value" id="sbLevel">Beginner</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- TOPBAR -->
+        <header class="topbar">
+          <div class="tabs">
+            <button class="tab active" id="tabStudy">Prüfung</button>
+          </div>
+
+          <div class="top-actions">
+            <button class="btn" id="btnReset">Reset</button>
+            <button class="btn primary" id="btnStart">Start</button>
+          </div>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="content">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h1 class="h1">Quiz</h1>
+                <div class="muted">Englisch: Vokabeln & Lückentexte</div>
+              </div>
+
+              <div class="status">
+                <span class="pill" id="pillMode">Modus: —</span>
+                <span class="pill" id="pillProgress">Fortschritt: —</span>
+                <span class="pill" id="pillPoints">Punkte: —</span>
+              </div>
+            </div>
+
+            <div class="progress">
+              <div
+                class="progress-bar"
+                id="progressBar"
+                style="width: 0%"></div>
+            </div>
+
+            <div class="card">
+              <div class="q-title" id="qTitle">Klicke auf Start.</div>
+              <div class="q-sub muted" id="qSub">
+                Dann bekommst du eine Frage.
+              </div>
+
+              <div class="answers" id="answers"></div>
+              <div class="error-text" id="errorText"></div>
+
+              <div class="card-actions" id="cardActions" style="display: none">
+                <button class="btn" id="btnNext">Weiter</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="panel">
+              <div class="panel-title">Regeln (einfach)</div>
+              <ul class="tips">
+                <li>Keine leeren Antworten</li>
+                <li>Groß und Kleinschreibung ist irrelevant</li>
+                <li>Am Ende Ergebnis + Note</li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <div class="panel-title">Dashboard (Minimal)</div>
+              <ul class="tips" id="dashText">
+                <li>Last: 0%</li>
+                <li>Best: 0%</li>
+                <li>Attempts: 0</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- START MODAL -->
+    <div class="modal-backdrop" id="startModal" style="display: none">
+      <div class="modal">
+        <h2>Quiz starten</h2>
+        <p class="muted">Nur das Nötigste: Modus, Typ, Anzahl.</p>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Modus</label>
+            <select class="select" id="selMode">
+              <option value="study">Prüfung</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Anzahl Fragen</label>
+            <select class="select" id="selCount">
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Schwierigkeit</label>
+            <select class="select" id="selDiff">
+              <option value="easy">Anfänger</option>
+              <option value="mid">Fortgeschritten</option>
+              <option value="hard">Profi</option>
+              <option value="all">All Star</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="field">
+            <label>Fragetypen</label>
+            <div class="checks">
+              <label class="checkline"
+                ><input type="checkbox" id="chkVocab" checked /> Vokabel</label
+              >
+              <label class="checkline"
+                ><input type="checkbox" id="chkBlank" checked />
+                Lückentext</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn" id="btnCancelStart">Abbrechen</button>
+          <button class="btn primary" id="btnConfirmStart">Starten</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="raphael.app.js" defer></script>
+  </body>
+</html>
