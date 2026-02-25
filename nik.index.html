@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Hub – Karteikarten + Mini-Game</title>
+  <link rel="stylesheet" href="nik.style.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand-card" href="ege.dashboard.html" aria-label="Zur Startseite">
+        <div class="brand-logo">
+          <img src="brand.png" alt="Study Hub Logo" />
+        </div>
+        <div>
+          <div class="brand-title">Study Hub</div>
+          <div class="brand-sub">Vokabeln & Karteikarten</div>
+        </div>
+      </a>
+
+      <div class="side-stats">
+        <div class="side-stat">
+          <span>Speicherung</span>
+          <b>localStorage</b>
+        </div>
+        <div class="side-stat">
+          <span>Level</span>
+          <b id="sideLevel">Anfänger</b>
+        </div>
+      </div>
+
+      <div class="side-divider"></div>
+
+      <div class="side-actions">
+        <button id="resetAll" class="btn btn-ghost" type="button">Reset</button>
+        <button id="quickStart" class="btn btn-success" type="button">Start</button>
+      </div>
+
+      <p class="side-hint">
+        Tipp: Filter links nutzen, Karte klicken zum Umdrehen.
+      </p>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-right">
+        </div>
+      </header>
+
+      <section class="content-grid">
+        <section class="card card-hero">
+          <div class="hero-head">
+            <div>
+              <h1>Karteikarten</h1>
+              <div class="sub">Lernmodus mit Filtern & Markierung</div>
+            </div>
+
+            <div class="filters">
+              <select id="difficultyFilter">
+                <option value="easy">Anfänger</option>
+                <option value="medium">Fortgeschritten</option>
+                <option value="hard">Profi</option>
+              </select>
+
+              <select id="tagFilter">
+                <option value="all">Alle Tags</option>
+              </select>
+
+              <button id="shuffleBtn" class="btn btn-ghost" type="button">Mischen</button>
+            </div>
+          </div>
+
+          <div class="flashcard" id="card" role="button" aria-label="Karte umdrehen">
+            <div class="flashcard-inner">
+              <div id="cardText" class="flashcard-text">Front</div>
+              <div class="flashcard-hint">Klicken oder „Umdrehen“</div>
+            </div>
+          </div>
+
+          <div class="row row-between">
+            <div class="badges">
+              <span id="learnedBadge" class="pill pill-green">✔ Gelernt</span>
+              <span id="difficultBadge" class="pill pill-orange">⚠ Schwierig</span>
+            </div>
+
+            <div class="mark">
+              <button id="markLearned" class="btn btn-soft" type="button">Gelernt</button>
+              <button id="markDifficult" class="btn btn-soft" type="button">Schwierig</button>
+            </div>
+          </div>
+
+          <div class="nav-controls">
+            <button id="prevBtn" class="btn btn-icon" type="button" aria-label="Vorherige Karte">◀</button>
+            <button id="flipBtn" class="btn btn-primary" type="button">Umdrehen</button>
+            <button id="nextBtn" class="btn btn-icon" type="button" aria-label="Nächste Karte">▶</button>
+          </div>
+        </section>
+
+        <aside class="right-col">
+          <section class="card">
+            <div class="card-head">
+              <h2>Spiel-Modus</h2>
+              <span class="pill pill-blue">Mini-Game</span>
+            </div>
+
+            <div class="stats">
+              <div class="stat" id="lives">❤️ 3</div>
+              <div class="stat" id="points">⭐ 0</div>
+              <div class="stat">⏱ <span id="timeLeft">10</span>s</div>
+            </div>
+
+            <div class="field">
+              <label for="timeLimitInput">Zeit pro Karte</label>
+              <input type="number" id="timeLimitInput" min="3" max="60" value="10" />
+            </div>
+
+            <div class="game-buttons">
+              <button id="startGame" class="btn btn-primary" type="button">Game starten</button>
+              <button id="knewIt" class="btn btn-good" type="button">Ich wusste es</button>
+              <button id="didntKnowIt" class="btn btn-bad" type="button">Ich wusste es nicht</button>
+            </div>
+
+            <div id="gameOver" class="gameover hidden">
+              <div class="gameover-title">💀 Game Over</div>
+              <div class="gameover-sub">Score gespeichert. Versuch’s nochmal!</div>
+              <button id="restartGame" class="btn btn-primary" type="button">Neustarten</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <h2>Fortschritt</h2>
+              <span class="hint">KPI</span>
+            </div>
+
+            <div class="kpis">
+              <div class="kpi">
+                <div class="kpi-label">Accuracy</div>
+                <div class="kpi-value" id="dashAccuracy">0%</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Highscore</div>
+                <div class="kpi-value" id="dashHighscore">0</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Best Lives</div>
+                <div class="kpi-value" id="dashLives">0</div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <div class="progress-bar" id="dashProgressBar" style="width:0%"></div>
+            </div>
+            <div class="hint">Mastery / Accuracy</div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="nik.script.js"></script>
+</body>
+</html>
