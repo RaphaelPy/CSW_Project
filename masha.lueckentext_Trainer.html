@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lückentext-Training</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="masha.lueckentext_styles.css" />
+</head>
+<body>
+    <div class="app-container">
+
+    <!-- ASIDE -->
+    <aside class="aside">
+
+        
+    <div class="aside-card">
+        <a href="ege.landing.html" class="nav-link">
+            <div class="aside-icon"></div>
+            <div>
+                <h2>Study Hub</h2>
+                <p>Lückentext-Trainer</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="aside-stats">
+        <div class="stat">
+        <span>Versuche</span>
+        <strong id="statAttempts">0</strong>
+        </div>
+        <div class="stat">
+        <span>Bestwert</span>
+        <strong id="statBest">0%</strong>
+        </div>
+        <div class="stat">
+        <span>Letzter Score</span>
+        <strong id="statLast">0%</strong>
+        </div>
+    </div>
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+        <div class="header">
+            <h2>Lückentext-Training</h2>
+            <button class="btn btn-secondary" id="resetBtn">Reset</button>
+        </div>
+
+
+        <div class="content-wrapper">
+
+        <!-- MODE -->
+        <div class="panel">
+            <h3>Modus</h3>
+            <div class="button-group">
+            <button class="btn btn-secondary mode-btn" data-mode="nouns">Nouns</button>
+            <button class="btn btn-secondary mode-btn" data-mode="adjectives">Adjectives</button>
+            <button class="btn btn-secondary mode-btn" data-mode="adverbs">Adverbs</button>
+            <button class="btn btn-secondary mode-btn" data-mode="mix">Mix</button>
+            </div>
+        </div>
+
+        <!-- DIFFICULTY -->
+        <div class="panel">
+            <h3>Schwierigkeit</h3>
+            <div class="button-group">
+            <button class="btn btn-secondary diff-btn" data-difficulty="easy">Easy</button>
+            <button class="btn btn-secondary diff-btn" data-difficulty="medium">Medium</button>
+            <button class="btn btn-secondary diff-btn" data-difficulty="hard">Hard</button>
+            </div>
+        </div>
+
+        <!-- EXERCISE -->
+        <div class="content-grid">
+            <div class="panel">
+            <h3>Hinweise</h3>
+            <ul class="hints-list" id="hintsList"></ul>
+            </div>
+
+            <div class="panel">
+            <h3>Aufgabe</h3>
+            <div id="sentenceDisplay"></div>
+            <div class="helper-text" id="helperText"></div>
+            <div class="feedback" id="feedback"></div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="checkBtn">Check</button>
+                <button class="btn btn-secondary" id="nextBtn" style="display:none;">Next</button>
+            </div>
+            </div>
+        </div>
+
+        <!-- PROGRESS -->
+        <div class="progress-section">
+            <div class="progress-track">
+            <div class="progress-track-fill" id="progressLineFill"></div>
+            <div class="progress-steps" id="progressNodes"></div>
+            </div>
+            <div class="progress-percentage" id="progressPercentage">0%</div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="results-screen" id="resultsScreen">
+            <h2>Training abgeschlossen</h2>
+
+            <div class="results-cards">
+            <div class="result-card">
+                <span>Punktzahl</span>
+                <strong id="finalScore">0</strong>
+            </div>
+            <div class="result-card">
+                <span>Richtig</span>
+                <strong id="finalCorrect">0</strong>
+            </div>
+            <div class="result-card">
+                <span>Genauigkeit</span>
+                <strong id="finalAccuracy">0%</strong>
+            </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="location.reload()">Restart</button>
+        </div>
+
+        </div>
+    </main>
+    </div>
+
+    <script src="masha.lueckentext.js"></script>
+</body>
+</html>
